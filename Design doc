@@ -3,3 +3,44 @@ elements that you use to design the game and what is their behavior.
 
 5. You should also include Game Title, the basics of the game, rules, Challenges, Core
 Features in the Game, Data and algorithms used
+
+Tap Tap Bug
+
+Basics:
+The basic goal of this game is to stop the ants from eating your food by squashing them before it's too late!
+This is accomplished by tapping on them before they reach the food.
+
+Rules:
+  -Game ends if:
+      -60 seconds pass
+      -all 5 pieces of food are eaten
+      
+  -Food:
+    -start with 5 pieces (only spawn on bottom half of screen?)
+    -disappear as soon as ants reach them
+    
+  -Types of ants:
+      -black: fast, worth 3 points
+      -red: medium, worth 2 points
+      -orange: slow, worth 1 point
+      -all ants spawn at the top of the screen and head straight to the nearest food
+      -once a food is eaten, all ants previously headed to that food will now head to the nearest uneaten food
+      -new bugs enter every 1 to 3 seconds
+
+Layout:
+  -Main Screen:
+    -buttons to select level 1 or level 2
+    -show high score for the currently selected level
+    -start button that starts the game when pressed
+  
+  -Game Canvas
+    -timer with countdown from 60
+    -pause button
+    -score tracker
+    
+Dimensions:
+    -Game Canvas:
+      -600px height by 400px view port, info bar is additional
+      -food: 20px by 20px
+      -bugs: 10px by 40px
+    
