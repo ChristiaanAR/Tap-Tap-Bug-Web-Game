@@ -14,20 +14,23 @@ Rules:
   -Game ends if:
       -60 seconds pass
       -all 5 pieces of food are eaten
+      -when the game ends, display score and show two buttons: restart or exit game
       
   -Food:
     -start with 5 pieces (only spawn on bottom half of screen?)
     -disappear as soon as ants reach them
     
   -Types of ants:
-      -black: fast, worth 3 points
-      -red: medium, worth 2 points
-      -orange: slow, worth 1 point
+      -black: fast (150px/sec), worth 5 points, 0.3 probability of appearing
+      -red: medium (75px/sec), worth 3 points, 0.3 probability of appearing
+      -orange: slow (60px/sec), worth 1 point, 0.4 probability of appearing
       -all ants spawn at the top of the screen and head straight to the nearest food
       -once a food is eaten, all ants previously headed to that food will now head to the nearest uneaten food
       -new bugs enter every 1 to 3 seconds
+      -level 2 increases move speed of ants
+      -taps within a radius of 30px kills an ant
 
-Layout:
+Design:
   -Main Screen:
     -buttons to select level 1 or level 2
     -show high score for the currently selected level
@@ -35,8 +38,10 @@ Layout:
   
   -Game Canvas
     -timer with countdown from 60
-    -pause button
+    -pause button (centered in info bar)
+    -when paused stop movement of ants and replace pause button with play button
     -score tracker
+    -killed ants fade from the screen within 2 seconds  
     
 Dimensions:
     -Game Canvas:
