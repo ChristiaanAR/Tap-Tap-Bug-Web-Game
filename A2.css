@@ -1,0 +1,33 @@
+
+body {
+	background-color: white;
+}
+
+#main {
+    text-align: center;
+	border: 5px solid gray;
+    width: 400px;
+    height: 650px;
+    margin: 0px;
+}
+
+/* on mobile */
+@media screen and (max-width: 1240px) {
+   p {
+       width: 95%;
+       height: 95%;
+       border: 5px blue;
+   }
+}
+
+#lvl1 {
+    background-color: greenyellow;
+}
+
+#lvl2 {
+    background-color: white;
+}
+
+#start {
+
+}

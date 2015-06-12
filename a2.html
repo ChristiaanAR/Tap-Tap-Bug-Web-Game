@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="A2.css" type="text/css" rel="stylesheet"/>
+<script src="A2.js" type="text/javascript"></script>
+<title>Tap Tap Bug</title>
+</head>
+
+<body onload="setHighScore(lvl1HS, 1)">
+
+	<div id="main">
+        <br>
+        <u>Tap Tap Bug!</u>
+		<br>
+        <br>
+        <br>
+        Level:
+            <input type="radio" name="lvl" id="lvl1" value="1" checked="checked" onclick="setHighScore(lvl1HS, 1)"/>
+            1
+            <input type="radio" name="lvl" id="lvl2" value="2" onclick="setHighScore(lvl2HS, 2)"/>
+            2
+        <br>
+        <br>
+        High Score: <b id="HighScore">error loading high score</b>
+        <br>
+        <br>
+        <input type="submit" onclick="startGame()" value="Start Game">
+	</div>
+</body>
+</html>
