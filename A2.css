@@ -20,14 +20,18 @@ body {
    }
 }
 
-#lvl1 {
-    background-color: greenyellow;
+#infoBar {
+    border: 5px solid gray;
+    margin: 0px;
+    width: 400px;
+    text-align: center;
 }
 
-#lvl2 {
-    background-color: white;
+#timer {
+    float: left;
+    margin-left: 10px;
 }
-
-#start {
-
+#score {
+    float: right;
+    margin-right: 10px;
 }

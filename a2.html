@@ -6,7 +6,7 @@
 <title>Tap Tap Bug</title>
 </head>
 
-<body onload="setHighScore(lvl1HS, 1)">
+<body onload="setup()">
 
 	<div id="main">
         <br>
@@ -26,5 +26,11 @@
         <br>
         <input type="submit" onclick="startGame()" value="Start Game">
 	</div>
+
+    <div id="infoBar">
+        <b id="timer"> 0 secs </b>
+        <button id="pause" onclick="pause()">| |</button>
+        <b id="score"> score: 0 </b>
+    </div>
 </body>
 </html>
