@@ -22,7 +22,14 @@ body {
 
 #infoBar {
     border: 5px solid gray;
-    margin: 0px;
+    margin: 0;
+    width: 400px;
+    text-align: center;
+}
+
+#end {
+    border: 5px solid gray;
+    margin: 0;
     width: 400px;
     text-align: center;
 }

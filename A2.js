@@ -2,11 +2,12 @@
 function setup() {
     setHighScore(lvl1HS, 1);
     document.getElementById("infoBar").style.display = 'none';
+    document.getElementById("end").style.display = 'none';
 }
 
 // variables
-var lvl1HS = 1;
-var lvl2HS = 2;
+var lvl1HS = 0;
+var lvl2HS = 0;
 var lvl, score, time, clock;
 var paused;
 
@@ -22,13 +23,34 @@ function startGame() {
         lvl = 1;
     }
 
+    document.getElementById("end").style.display = 'none';
     document.getElementById("main").style.display = 'none';
     document.getElementById("infoBar").style.display = 'block';
 
+    document.getElementById("timer").textContent = "0 secs";
+    document.getElementById("pause").disabled = false;
+    document.getElementById("pause").textContent = "| |";
+
     time = 0;
     score = 0;
-    clock = setInterval(addTime, 1000); // timer
-    paused = false;
+    addScore(0);
+    pause();
+}
+
+function gameEnd() {
+    pause();
+    document.getElementById("end").style.display = 'block';
+    if (lvl == 1 && score > lvl1HS) {
+        setHighScore(score, 1);
+        document.getElementById("endMsg").textContent = 'New High Score!';
+    }
+    else if (score > lvl2HS) {
+        setHighScore(score, 2);
+        document.getElementById("endMsg").textContent = 'New High Score!';
+    }
+
+    document.getElementById("pause").disabled = true;
+    document.getElementById("finalScore").textContent = score;
 }
 
 function setHighScore(HS, lvl) {
@@ -45,19 +67,15 @@ function addTime() {
     time += 1;
     document.getElementById("timer").textContent = time + " secs";
     if (time == 60) {
-        // end game
+        gameEnd();
     }
 }
 
 function addScore(points) {
     score += points;
-    if (lvl == 1 && score > lvl1HS) {
-        lvl1HS = score;
-    }
-    else if (score > lvl2HS) {
-        lvl2HS = score;
-    }
+    document.getElementById("score").textContent = "score: " + score;
 }
+
 function pause() {
     //stop bug movement, bring up pause menu.
     if (paused == false) {
@@ -70,5 +88,15 @@ function pause() {
         clock = setInterval(addTime, 1000);
         document.getElementById("pause").textContent = "| |";
     }
+}
+
+function returnToMain() {
+    document.getElementById("timer").textContent = "0 secs";
+    document.getElementById("pause").disabled = false;
+    document.getElementById("pause").textContent = "| |";
+
+    document.getElementById("infoBar").style.display = 'none';
+    document.getElementById("end").style.display = 'none';
+    document.getElementById("main").style.display = 'block';
 }
 
