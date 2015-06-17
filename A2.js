@@ -8,8 +8,35 @@ function setup() {
 // variables
 var lvl1HS = 0;
 var lvl2HS = 0;
+
+// keep track of score, the time left and whether game paused, lvl
 var lvl, score, time, clock;
 var paused;
+
+//dimensions
+height = 600;
+width = 400;
+
+// store bugs and food
+var bugs = [];
+var food = [];
+
+// the score for each bug
+var blackbugscr = 5;
+var redbugscr = 3;
+var orangebugscr = 1;
+
+// probability for [black, red, orange]
+var weights = [0.3, 0.3, 0.4];
+
+// canvas variables
+var canvas = null;
+var	context = null;
+
+// images
+blackbug;
+orangebug;
+redbug;
 
 function startGame() {
     /*
@@ -35,7 +62,26 @@ function startGame() {
     score = 0;
     addScore(0);
     pause();
+	
+	// get canvas
+	canvas = document.getElementById("gamecanvas");
+	// set canvas width and height
+	canvas.width = width;
+	canvas.height = height;
+	context = canvas.getContext('2d');
+	
+	// load images
+	blackbug = new Image();
+	orangebug = new Image();
+	redbug = new Image();
+	
+	blackbug.src = "blackbug.png";
+	orangebug.src = "orangebug.png";
+	redbug.src = "redbug.png";
+	
 }
+
+
 
 function gameEnd() {
     pause();
@@ -100,3 +146,4 @@ function returnToMain() {
     document.getElementById("main").style.display = 'block';
 }
 
+window.addEventListener('resize', resize, false);
