@@ -42,3 +42,9 @@ body {
     float: right;
     margin-right: 10px;
 }
+
+canvas { 
+	position: fixed;
+	margin: 0 auto; 
+	background: black;
+}
