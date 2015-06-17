@@ -34,9 +34,9 @@ var canvas = null;
 var	context = null;
 
 // images
-blackbug;
-orangebug;
-redbug;
+var blackbug;
+var orangebug;
+var redbug;
 
 function startGame() {
     /*
