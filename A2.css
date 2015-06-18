@@ -24,7 +24,9 @@ body {
     border: 5px solid gray;
     margin: 0;
     width: 400px;
+    height: 21px;
     text-align: center;
+    clear: both;
 }
 
 #end {
@@ -44,8 +46,14 @@ body {
     margin-right: 10px;
 }
 
+#pause {
+    position: fixed;
+    left: 200px;
+}
+
 canvas { 
 	position: fixed;
 	margin: 0 auto; 
 	background: brown;
+    border: 5px solid gray;
 }

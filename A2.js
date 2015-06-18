@@ -3,6 +3,7 @@ function setup() {
     setHighScore(lvl1HS, 1);
     document.getElementById("infoBar").style.display = 'none';
     document.getElementById("end").style.display = 'none';
+	document.getElementById("gamecanvas").style.display = 'none';
 }
 
 // variables
@@ -89,6 +90,7 @@ function startGame() {
 	document.getElementById("end").style.display = 'none';
 	document.getElementById("main").style.display = 'none';
 	document.getElementById("infoBar").style.display = 'block';
+    document.getElementById("gamecanvas").style.display = 'block';
 
 	document.getElementById("timer").textContent = "0 secs";
 	document.getElementById("pause").disabled = false;
@@ -191,34 +193,35 @@ function animate() {
 	if (food.length === 0) {
 		gameEnd();
 	}
-	
-	// Animate game objects
-	requestAnimFrame( animate );
-	
-	// decrease counter for next bug
-	nextbug -= 1;
-	// if counter less than zero
-	if (nextbug < 0) {
-		// create new bug instance and add to array
-		var randbug = getRandomItem(weights);
-		
-		if (randbug === 0) {
-			bugs.push(new Bug(rand(10, 390), blackbugsp, blackbugscr, blackbug));
-		} else if (randbug === 1) {
-			bugs.push(new Bug(rand(10, 390), redbugsp, redbugscr, redbug));
-		} else {
-			bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug));
-		}
-		// reset counter with a random value: one or several seconds
-		nextbug = rand(1, 3) * 100;
-	}
-	
-	// draw all bugs and render to canvas
-	for (var i = 0; i < bugs.length; i++) {
-		bugs[i].draw();
-	}
-}
 
+
+    // Animate game objects
+    requestAnimFrame( animate );
+    if (paused == false) {
+        // decrease counter for next bug
+        nextbug -= 1;
+        // if counter less than zero
+        if (nextbug < 0) {
+            // create new bug instance and add to array
+            var randbug = getRandomItem(weights);
+
+            if (randbug === 0) {
+                bugs.push(new Bug(rand(10, 390), blackbugsp, blackbugscr, blackbug));
+            } else if (randbug === 1) {
+                bugs.push(new Bug(rand(10, 390), redbugsp, redbugscr, redbug));
+            } else {
+                bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug));
+            }
+            // reset counter with a random value: one or several seconds
+            nextbug = rand(1, 3) * 100;
+        }
+
+        // draw all bugs and render to canvas
+        for (var i = 0; i < bugs.length; i++) {
+            bugs[i].draw();
+        }
+    }
+}
 function gameEnd() {
     pause();
     document.getElementById("end").style.display = 'block';
