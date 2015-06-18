@@ -101,7 +101,17 @@ function startGame() {
 	addScore(0);
 	nextbug = -1;
 	pause();
-	
+
+    //clear canvas of bugs and food from last game
+    var i = bugs.length;
+    for (var t=0; t<i; t++) {
+        bugs.pop();
+    }
+    i = foods.length;
+    for (t=0; t<i; t++) {
+        foods.pop();
+    }
+
 	// get canvas
 	canvas = document.getElementById("gamecanvas");
 	// set canvas width and height

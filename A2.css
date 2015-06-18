@@ -8,7 +8,7 @@ body {
 	border: 5px solid gray;
     width: 400px;
     height: 650px;
-    margin: 0px;
+    margin: 0;
 }
 
 /* on mobile */
@@ -22,19 +22,22 @@ body {
 
 #infoBar {
     border: 5px solid gray;
+    background-color: white;
     margin: 0;
     width: 400px;
     height: 21px;
     text-align: center;
-    clear: both;
 }
 
 #end {
     border: 5px solid gray;
+    background-color: white;
     margin: 0;
     width: 400px;
     text-align: center;
-	z-index:0;
+	z-index: 1;
+    position: fixed;
+    top: 200px;
 }
 
 #timer {
@@ -56,4 +59,6 @@ canvas {
 	margin: 0 auto; 
 	background: brown;
     border: 5px solid gray;
+    border-top: none;
+    z-index: 0;
 }
