@@ -17,6 +17,7 @@ var paused;
 //dimensions
 var height = 600;
 var width = 400;
+var FPS = 60;
 
 // store bugs and food
 var bugs = [];
@@ -28,10 +29,19 @@ var blackbugscr = 5;
 var redbugscr = 3;
 var orangebugscr = 1;
 
-// the speeds for each bug
-var blackbugsp = 0.15;
-var redbugsp = 0.075;
-var orangebugsp = 0.06;
+// the width and height of each bug
+var bugwidth = 24;
+var bugheight = 30;
+
+// the speeds for each bug in lvl 1
+var blackbugsp = 150/FPS;
+var redbugsp = 75/FPS;
+var orangebugsp = 60/FPS;
+
+// the speeds for each bug in lvl 2
+var blackbugsp2 = 200/FPS;
+var redbugsp2 = 100/FPS;
+var orangebugsp2 = 80/FPS;
 
 // probability for [black, red, orange]
 var weights = [0.3, 0.3, 0.4];
@@ -61,17 +71,68 @@ function Food(x, y) {
 }
 
 // bug object to store location, state and movements
-function Bug(x, speed, score, bugimg) {
+function Bug(x, speed, score, bugimg, width, height) {
 	this.dead = false;
 	this.y = 0;
 	this.x = x;
 	this.speed = speed;
 	this.score = score;
 	this.bugimg = bugimg;
+	this.width = width;
+	this.height = height;
+
+	this.init = function() {
+		// doesn't move if there is no food
+		if (foods.length > 0) {
+			// find the nearest food using euclidean distance
+			
+			// sets the default lowest distance to first food
+			var lowestdist = Math.sqrt(Math.pow((this.x - foods[0].x), 2) + Math.pow((this.y - foods[0].y), 2));
+			var dist;
+			for (var i = 0; i < foods.length; i++) {
+				dist = Math.sqrt(Math.pow((this.x - foods[i].x), 2) + Math.pow((this.y - foods[i].y), 2));
+				if (dist < lowestdist) {
+					lowestdist = dist;
+					this.food = foods[i]; //keep track of food
+				}
+			}
+			//alert("The food I'm after is at spot:" + this.food.x + "and" + this.food.y);
+		}
+	};
+	
+	// to do: check if food eaten
 	
 	this.draw = function() {
 		context.drawImage(bugimg, this.x, this.y);
 	};
+
+	this.UpdateAngle = function() {
+		// find the angle of the bug
+		this.dx = this.food.x - this.x;
+		this.dy = this.food.y - this.y;
+		this.distance = Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));
+		this.angle = Math.atan2(this.dy,this.dx) * 180 / Math.PI;
+	}
+	
+	this.UpdateSpeed = function() {
+		// find where the bug needs to go next
+		this.moveX = this.speed * (this.dx/this.distance);
+		this.moveY = this.speed * (this.dy/this.distance);
+    };
+	
+	this.move = function() {
+		
+		// move the bug towards food
+		this.UpdateAngle();
+		this.UpdateSpeed();
+		
+		// todo: check collision before moving
+		this.x += this.moveX;
+		this.y += this.moveY;
+		
+	};
+	
+	this.init();
 }
 
 function startGame() {
@@ -132,7 +193,6 @@ function startGame() {
 	function imageLoaded(){
 		numLoaded++;
 		if (numLoaded === numImages) {
-			//context.drawImage(food, 50, 50);
 			start();
 		}
 	}
@@ -176,7 +236,7 @@ function start() {
 // random function using weights
 
 function rand(min, max) {
-	return Math.random() * (max - min) + min;
+	return +(Math.random() * (max - min) + min).toFixed(1);
 }
 
 function getRandomItem(weight) {
@@ -203,11 +263,20 @@ function animate() {
 	if (food.length === 0) {
 		gameEnd();
 	}
-
-
-    // Animate game objects
-    requestAnimFrame( animate );
-    if (paused == false) {
+	
+    if (paused === false) {
+	
+		// Animate game objects
+		requestAnimFrame(animate);
+		
+		// clear canvas
+		context.clearRect(0, 0, canvas.width, canvas.height);
+	
+		// move all bugs
+		for (var i = 0; i < bugs.length; i++) {
+			bugs[i].move();
+		}
+	
         // decrease counter for next bug
         nextbug -= 1;
         // if counter less than zero
@@ -216,17 +285,22 @@ function animate() {
             var randbug = getRandomItem(weights);
 
             if (randbug === 0) {
-                bugs.push(new Bug(rand(10, 390), blackbugsp, blackbugscr, blackbug));
+                bugs.push(new Bug(rand(10, 390), blackbugsp, blackbugscr, blackbug, bugwidth, bugheight));
             } else if (randbug === 1) {
-                bugs.push(new Bug(rand(10, 390), redbugsp, redbugscr, redbug));
+                bugs.push(new Bug(rand(10, 390), redbugsp, redbugscr, redbug, bugwidth, bugheight));
             } else {
-                bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug));
+                bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug, bugwidth, bugheight));
             }
-            // reset counter with a random value: one or several seconds
-            nextbug = rand(1, 3) * 100;
+            // reset counter with a random value: one or several seconds (60 frames per sec)
+            nextbug = rand(1, 3) * 60;
         }
-
-        // draw all bugs and render to canvas
+		
+		// draw all food and render to canvas
+		for (var i = 0; i < foods.length; i++) {
+			foods[i].draw();
+		}
+		
+		// draw all bugs and render to canvas
         for (var i = 0; i < bugs.length; i++) {
             bugs[i].draw();
         }
