@@ -396,14 +396,12 @@ function getPosition(event) {
             bugX = bugs[i].x;
             bugY = bugs[i].y;
             alert("x: " + x + " y: " + y + "\n bugX: " + bugX + " bugY: " + bugY +
-                "\nbloop: "+ (bugX+9>x) + " | " + (x>bugX-1)+" | "+(bugY+39>y)+ " | "+ (y>bugY-1));
+                "\n"+ (bugX+9>x) + " | " + (x>bugX-1)+" | "+(bugY+39>y)+ " | "+ (y>bugY-1));
             if (bugX+9>x && x>bugX-1 && bugY+39>y && y>bugY-1) { // if bug was clicked on
                 addScore(bugs[i].score);
-                for (i; i<bugs.length; i++){
-                    bugs[i]=bugs[i+1];
-                }
+                bugs.splice(i, 1);
                 alert("removed");
-                return;
+                //return;
             }
         }
     }
