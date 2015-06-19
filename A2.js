@@ -175,6 +175,7 @@ function startGame() {
 
 	// get canvas
 	canvas = document.getElementById("gamecanvas");
+    canvas.addEventListener("mousedown", getPosition, false);
 	// set canvas width and height
 	canvas.width = width;
 	canvas.height = height;
@@ -257,8 +258,6 @@ function getRandomItem(weight) {
 
 // the animation loop
 function animate() {
-	document.getElementById('score').innerHTML = score;
-	
 	// No more food left, game over
 	if (food.length === 0) {
 		gameEnd();
@@ -381,3 +380,31 @@ window.requestAnimFrame = (function(){
             window.setTimeout(callback, 1000 / 60);
           };
 })();
+
+function getPosition(event) {
+    var x = 0;
+    var y = 0;
+    var canvas = document.getElementById("gamecanvas");
+    var bugX = 0;
+    var bugY = 0;
+
+    x = event.x - canvas.offsetLeft;
+    y = event.y - canvas.offsetTop;
+
+    if (paused == false) {
+        for (var i=0; i<bugs.length; i++) {
+            bugX = bugs[i].x;
+            bugY = bugs[i].y;
+            alert("x: " + x + " y: " + y + "\n bugX: " + bugX + " bugY: " + bugY +
+                "\nbloop: "+ (bugX+9>x) + " | " + (x>bugX-1)+" | "+(bugY+39>y)+ " | "+ (y>bugY-1));
+            if (bugX+9>x && x>bugX-1 && bugY+39>y && y>bugY-1) { // if bug was clicked on
+                addScore(bugs[i].score);
+                for (i; i<bugs.length; i++){
+                    bugs[i]=bugs[i+1];
+                }
+                alert("removed");
+                return;
+            }
+        }
+    }
+}
