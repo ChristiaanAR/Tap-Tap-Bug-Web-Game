@@ -65,7 +65,7 @@ var cloth;
 
 // timer
 var nextbug;
-var animateClock;
+var animateClock = 0;
 
 // food object to store location and state (eaten or not)
 function Food(x, y, id) {
@@ -321,8 +321,9 @@ function start() {
 		foods.push(new Food(rand(fdwidth, width-fdwidth), rand(fdheight, height-fdheight), i));
 		foods[i].draw();
 	}
-	
-	animate();
+	if (animateClock ==0) {
+        animate();
+    }
 }
 
 // random function using weights
@@ -356,7 +357,7 @@ function animate() {
 	}
 
 		// Animate game objects
-    animateClock = requestAnimFrame(animate);
+    requestAnimFrame(animate);
 
 	if (paused === false) {
 		// clear canvas
@@ -374,12 +375,23 @@ function animate() {
             // create new bug instance and add to array
             var randbug = getRandomItem(weights);
 
-            if (randbug === 0) {
-                bugs.push(new Bug(rand(10, 390), blackbugsp, blackbugscr, blackbug, bugwidth, bugheight));
-            } else if (randbug === 1) {
-                bugs.push(new Bug(rand(10, 390), redbugsp, redbugscr, redbug, bugwidth, bugheight));
-            } else {
-                bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug, bugwidth, bugheight));
+            if(lvl = 1) {
+                if (randbug === 0) {
+                    bugs.push(new Bug(rand(10, 390), blackbugsp, blackbugscr, blackbug, bugwidth, bugheight));
+                } else if (randbug === 1) {
+                    bugs.push(new Bug(rand(10, 390), redbugsp, redbugscr, redbug, bugwidth, bugheight));
+                } else {
+                    bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug, bugwidth, bugheight));
+                }
+            }
+            else{
+                if (randbug === 0) {
+                    bugs.push(new Bug(rand(10, 390), blackbugsp2, blackbugscr, blackbug, bugwidth, bugheight));
+                } else if (randbug === 1) {
+                    bugs.push(new Bug(rand(10, 390), redbugsp2, redbugscr, redbug, bugwidth, bugheight));
+                } else {
+                    bugs.push(new Bug(rand(10, 390), orangebugsp2, orangebugscr, orangebug, bugwidth, bugheight));
+                }
             }
             // reset counter with a random value: one or several seconds (60 frames per sec)
             nextbug = rand(1, 3) * FPS;
@@ -413,7 +425,7 @@ function animate() {
 }
 function gameEnd() {
     pause();
-    animateClock = null;
+    animateClock = 1;
     document.getElementById("end").style.display = 'block';
     if (lvl == 1 && score > lvl1HS) {
         setHighScore(score, 1);
