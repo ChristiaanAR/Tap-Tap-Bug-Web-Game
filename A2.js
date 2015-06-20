@@ -81,12 +81,17 @@ function Food(x, y, id) {
 function Splat(x, y) {
     this.x = x;
     this.y = y;
-    this.timeOut = setTimeout(this.remove(), 2000);
+    this.tOut = null;
+
+    this.draw = function() {
+        context.drawImage(splat, this.x, this.y);
+    };
 
     this.remove = function () {
         for (var s = 0; s < splats.length; s++) {
             if (splats[s].x == this.x && splats[s].y == this.y) {
                 splats.splice(s, 1);
+                s = splats.length +10;
             }
         }
     };
@@ -248,6 +253,10 @@ function startGame() {
     for (t=0; t<i; t++) {
         foods.pop();
     }
+    i = splats.length;
+    for (t=0; t<i; t++) {
+        splats.pop();
+    }
 
 	// get canvas
 	canvas = document.getElementById("gamecanvas");
@@ -395,6 +404,10 @@ function animate() {
         for (i = 0; i < bugs.length; i++) {
             bugs[i].draw();
         }
+
+        for (i = 0; i < splats.length; i++) {
+            splats[i].draw();
+        }
     }
 }
 function gameEnd() {
@@ -494,9 +507,9 @@ function getPosition(event) {
             bugX = bugs[i].x;
             bugY = bugs[i].y;
             if (bugX+40>=x && x>=bugX-30 && bugY+30>=y && y>=bugY-30) { // if bug was clicked on
-				console.log("Clicked on");
                 addScore(bugs[i].score);
-                //splats.push();
+                splats.push(new Splat(bugX, bugY));
+                splats[splats.length-1].tOut = setTimeout(splats[splats.length-1].remove(), 2000);
                 bugs.splice(i, 1);
             }
         }
