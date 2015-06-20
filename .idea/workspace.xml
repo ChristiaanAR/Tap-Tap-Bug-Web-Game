@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe3286d5-0553-4dfe-b661-019a4152e2d6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blackbug.png" afterPath="$PROJECT_DIR$/blackbug.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orangebug.png" afterPath="$PROJECT_DIR$/orangebug.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/redbug.png" afterPath="$PROJECT_DIR$/redbug.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A2.js" afterPath="$PROJECT_DIR$/A2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -24,11 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="a2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/a2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="9.230769">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="A2.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/A2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38129497">
-              <caret line="318" column="34" selection-start-line="318" selection-start-column="34" selection-end-line="318" selection-end-column="34" />
+            <state vertical-scroll-proportion="-2.0330935">
+              <caret line="408" column="8" selection-start-line="408" selection-start-column="8" selection-end-line="408" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -210,7 +223,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434813219146</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="deletes bugs with splat code in, splats still don't show up.">
+      <created>1434814215813</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1434814215813</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -254,7 +273,8 @@
     <MESSAGE value="Updated for proper hit detection, fixed some pause and new game bugs." />
     <MESSAGE value="minor changes." />
     <MESSAGE value="Fixed pausing not resuming bug movement.  Fixed bug with end game text not changing back after high score." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed pausing not resuming bug movement.  Fixed bug with end game text not changing back after high score." />
+    <MESSAGE value="deletes bugs with splat code in, splats still don't show up." />
+    <option name="LAST_COMMIT_MESSAGE" value="deletes bugs with splat code in, splats still don't show up." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -293,10 +313,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/a2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="9.230769">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/A2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38129497">
-          <caret line="318" column="34" selection-start-line="318" selection-start-column="34" selection-end-line="318" selection-end-column="34" />
+        <state vertical-scroll-proportion="-2.0330935">
+          <caret line="408" column="8" selection-start-line="408" selection-start-column="8" selection-end-line="408" selection-end-column="8" />
           <folding />
         </state>
       </provider>

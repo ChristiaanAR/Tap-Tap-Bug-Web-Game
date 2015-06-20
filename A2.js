@@ -81,6 +81,7 @@ function Food(x, y, id) {
 function Splat(x, y) {
     this.x = x;
     this.y = y;
+    this.old = 0;
     this.tOut = null;
 
     this.draw = function() {
@@ -88,10 +89,17 @@ function Splat(x, y) {
     };
 
     this.remove = function () {
-        for (var s = 0; s < splats.length; s++) {
-            if (splats[s].x == this.x && splats[s].y == this.y) {
-                splats.splice(s, 1);
-                s = splats.length +10;
+        if(this.old ==0) {
+            this.old = 1;
+        }
+        else {
+            for (var s = 0; s < splats.length; s++) {
+                if (splats[s].x == this.x && splats[s].y == this.y) {
+                    clearInterval(splats[s].tOut);
+                    splats.splice(s, 1);
+                    s = splats.length + 10;
+                    alert("remove splat");
+                }
             }
         }
     };
@@ -358,7 +366,7 @@ function getRandomItem(weight) {
 function animate() {
 
 	// No more food left, game over
-	if (foods.length === 0) {
+	if (foods.length === 0 && paused == false) {
 		gameEnd();
 	}
 
@@ -394,7 +402,11 @@ function animate() {
 		
 		// draw bg to canvas
 		context.drawImage(cloth, 0, 0);
-		
+
+        for (i = 0; i < splats.length; i++) {
+            splats[i].draw();
+        }
+
 		// draw all food and render to canvas
 		for (i = 0; i < foods.length; i++) {
 			foods[i].draw();
@@ -405,9 +417,7 @@ function animate() {
             bugs[i].draw();
         }
 
-        for (i = 0; i < splats.length; i++) {
-            splats[i].draw();
-        }
+
     }
 }
 function gameEnd() {
@@ -509,7 +519,7 @@ function getPosition(event) {
             if (bugX+40>=x && x>=bugX-30 && bugY+30>=y && y>=bugY-30) { // if bug was clicked on
                 addScore(bugs[i].score);
                 splats.push(new Splat(bugX, bugY));
-                splats[splats.length-1].tOut = setTimeout(splats[splats.length-1].remove(), 2000);
+                splats[splats.length-1].tOut = setInterval(splats[splats.length-1].remove, 2000);
                 bugs.splice(i, 1);
             }
         }
