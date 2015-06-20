@@ -1,5 +1,5 @@
 4. You should provide a design documentation. The design documents should include the
-elements that you use to design the game and what is their behavior.
+elements that you use to design the game and what is their behaviour.
 
 5. You should also include Game Title, the basics of the game, rules, Challenges, Core
 Features in the Game, Data and algorithms used
@@ -17,18 +17,18 @@ Rules:
       -when the game ends, display score and show two buttons: restart or exit game
       
   -Food:
-    -start with 5 pieces (only spawn on bottom half of screen?)
-    -disappear as soon as ants reach them
+    -start with 5 pieces (spawn anywhere on the canvas)
+    -disappear as soon as bugs reach them
     
-  -Types of ants:
+  -Types of bugs:
       -black: fast (150px/sec), worth 5 points, 0.3 probability of appearing
       -red: medium (75px/sec), worth 3 points, 0.3 probability of appearing
       -orange: slow (60px/sec), worth 1 point, 0.4 probability of appearing
-      -all ants spawn at the top of the screen and head straight to the nearest food
-      -once a food is eaten, all ants previously headed to that food will now head to the nearest uneaten food
+      -all bugs spawn at the top of the screen and head straight to the nearest food
+      -once a food is eaten, all bugs previously headed to that food will now head to the nearest uneaten food
       -new bugs enter every 1 to 3 seconds
-      -level 2 increases move speed of ants
-      -taps within a radius of 30px kills an ant
+      -level 2 increases move speed of bugs
+      -taps within a radius of 30px kills a bug
 
 Design:
   -Main Screen:
@@ -39,13 +39,22 @@ Design:
   -Game Canvas
     -timer with countdown from 60
     -pause button (centered in info bar)
-    -when paused stop movement of ants and replace pause button with play button
+    -when paused stop movement of bugs and replace pause button with play button
     -score tracker
-    -killed ants fade from the screen within 2 seconds  
+    -killed bugs fade from the screen within 2 seconds  
     
 Dimensions:
     -Game Canvas:
       -600px height by 400px view port, info bar is additional
       -food: 20px by 20px
-      -bugs: 10px by 40px
+      -bugs: 24px by 30px
     
+Elements Used:
+	- Div, id= "main":
+	  -Acts as the main menu of the game
+	  -Consists of radio buttons and normal ones
+	  -Radio buttons "lvl1" and "lvl2":
+		-When pressed, dictates to game which level you'd like to play
+		-Also when pressed, shows previous high score for that level
+		
+	Reasoning for using DOM as game ui: less processor intensive (less rendering for the canvas), makes game faster, smaller file size

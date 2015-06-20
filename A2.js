@@ -97,11 +97,13 @@ function Bug(x, speed, score, bugimg, width, height) {
 			// find the nearest food using euclidean distance
 			for (var i = 0; i < foods.length; i++) {
 				dist = Math.sqrt(Math.pow((this.x - foods[i].x), 2) + Math.pow((this.y - foods[i].y), 2));
+				console.log("Is this dist smaller?: " + dist + " than " + lowestdist);
 				if (dist < lowestdist) {
 					lowestdist = dist;
 					this.food = foods[i]; //keep track of food
 				}
 			}
+			console.log("Going towards: " + lowestdist);
 		} else {
 			this.food = null;
 		}
@@ -148,7 +150,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 		this.checkeaten();
 		
 		// only move if there is a food to go after
-		if (!!this.food) {
+		if (this.food) {
 			// move the bug towards food
 			this.UpdateDistance();
 			this.UpdateAngle();
@@ -164,7 +166,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 	
 	this.atefood = function() {
 		// collision checking for the bug and food
-		if (this.distance < 1) {
+		if (this.distance < 1.5) {
 			console.log(this.distance);
 			for (var i = 0; i < foods.length; i++) {
 				// find food to delete
@@ -337,7 +339,7 @@ function animate() {
                 bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug, bugwidth, bugheight));
             }
             // reset counter with a random value: one or several seconds (60 frames per sec)
-            nextbug = rand(1, 3) * 60;
+            nextbug = rand(1, 3) * 6000000;
         }
 		
 		// draw all food and render to canvas
