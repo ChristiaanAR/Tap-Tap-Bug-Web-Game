@@ -263,14 +263,13 @@ function animate() {
 		gameEnd();
 	}
 	
-    if (paused === false) {
-	
 		// Animate game objects
 		requestAnimFrame(animate);
-		
+
+    if (paused === false) {
 		// clear canvas
 		context.clearRect(0, 0, canvas.width, canvas.height);
-	
+
 		// move all bugs
 		for (var i = 0; i < bugs.length; i++) {
 			bugs[i].move();
@@ -366,6 +365,7 @@ function returnToMain() {
     document.getElementById("infoBar").style.display = 'none';
     document.getElementById("end").style.display = 'none';
     document.getElementById("main").style.display = 'block';
+    document.getElementById("gamecanvas").style.display = 'none';
 }
 
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating
@@ -395,13 +395,11 @@ function getPosition(event) {
         for (var i=0; i<bugs.length; i++) {
             bugX = bugs[i].x;
             bugY = bugs[i].y;
-            alert("x: " + x + " y: " + y + "\n bugX: " + bugX + " bugY: " + bugY +
-                "\n"+ (bugX+9>x) + " | " + (x>bugX-1)+" | "+(bugY+39>y)+ " | "+ (y>bugY-1));
-            if (bugX+9>x && x>bugX-1 && bugY+39>y && y>bugY-1) { // if bug was clicked on
+            //alert("x: " + x + " y: " + y + "\n bugX: " + bugX + " bugY: " + bugY +
+            //    "\n"+ (bugX+10>=x) + " | " + (x>=bugX)+" | "+(bugY+40>=y)+ " | "+ (y>=bugY-1));
+            if (bugX+40>=x && x>=bugX-30 && bugY+30>=y && y>=bugY-30) { // if bug was clicked on
                 addScore(bugs[i].score);
                 bugs.splice(i, 1);
-                alert("removed");
-                //return;
             }
         }
     }
