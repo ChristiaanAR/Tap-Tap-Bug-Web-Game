@@ -426,12 +426,13 @@ function animate() {
 function gameEnd() {
     pause();
     animateClock = 1;
+
     document.getElementById("end").style.display = 'block';
     if (lvl == 1 && score > lvl1HS) {
         setHighScore(score, 1);
         document.getElementById("endMsg").textContent = 'New High Score!';
     }
-    else if (score > lvl2HS) {
+    else if (lvl == 2 && score > lvl2HS) {
         setHighScore(score, 2);
         document.getElementById("endMsg").textContent = 'New High Score!';
     }
@@ -444,8 +445,8 @@ function gameEnd() {
     document.getElementById("finalScore").textContent = score;
 }
 
-function setHighScore(HS, lvl) {
-    if (lvl == 1) {
+function setHighScore(HS, level) {
+    if (level == 1) {
         lvl1HS = HS;
     }
     else {

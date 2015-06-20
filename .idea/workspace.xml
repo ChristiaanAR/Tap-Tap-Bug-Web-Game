@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fe3286d5-0553-4dfe-b661-019a4152e2d6" name="Default" comment="Fixed bugs getting faster every new game.">
+    <list default="true" id="fe3286d5-0553-4dfe-b661-019a4152e2d6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A2.js" afterPath="$PROJECT_DIR$/A2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -37,8 +37,8 @@
       <file leaf-file-name="A2.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/A2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4431654">
-              <caret line="392" column="65" selection-start-line="392" selection-start-column="65" selection-end-line="392" selection-end-column="65" />
+            <state vertical-scroll-proportion="0.34244603">
+              <caret line="434" column="25" selection-start-line="434" selection-start-column="25" selection-end-line="434" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -238,7 +238,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434831310318</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed bugs getting faster every new game, bugs change speed when lvl2 is selected.">
+      <created>1434831907520</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1434831907520</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -285,7 +291,8 @@
     <MESSAGE value="deletes bugs with splat code in, splats still don't show up." />
     <MESSAGE value="Fixed bug with endgame screen, splats show up but don't disappear." />
     <MESSAGE value="Splats now disappear after 120 frames." />
-    <option name="LAST_COMMIT_MESSAGE" value="Splats now disappear after 120 frames." />
+    <MESSAGE value="Fixed bugs getting faster every new game, bugs change speed when lvl2 is selected." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs getting faster every new game, bugs change speed when lvl2 is selected." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -334,8 +341,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/A2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4431654">
-          <caret line="392" column="65" selection-start-line="392" selection-start-column="65" selection-end-line="392" selection-end-column="65" />
+        <state vertical-scroll-proportion="0.34244603">
+          <caret line="434" column="25" selection-start-line="434" selection-start-column="25" selection-end-line="434" selection-end-column="25" />
           <folding />
         </state>
       </provider>
