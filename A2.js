@@ -21,6 +21,7 @@ var FPS = 60;
 
 // store bugs and food
 var bugs = [];
+var splats = [];
 var foods = [];
 var foodpieces = 5;
 
@@ -55,6 +56,8 @@ var blackbug;
 var orangebug;
 var redbug;
 var food;
+var splat;
+var cloth;
 
 // timer
 var nextbug;
@@ -68,6 +71,19 @@ function Food(x, y) {
 	this.draw = function() {
 		context.drawImage(food, this.x, this.y);
 	};
+}
+function Splat(x, y) {
+    this.x = x;
+    this.y = y;
+    this.timeOut = setTimeout(this.remove(), 2000);
+
+    this.remove = function () {
+        for (s = 0; s < splats.lenght; s++) {
+            if (splats[s].x == this.x && splats[s].y == this.y) {
+                splats.splice(s, 1);
+            }
+        }
+    };
 }
 
 // bug object to store location, state and movements
@@ -85,7 +101,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 		// doesn't move if there is no food
 		if (foods.length > 0) {
 			// find the nearest food using euclidean distance
-			
+
 			// sets the default lowest distance to first food
 			var lowestdist = Math.sqrt(Math.pow((this.x - foods[0].x), 2) + Math.pow((this.y - foods[0].y), 2));
 			var dist;
@@ -99,9 +115,9 @@ function Bug(x, speed, score, bugimg, width, height) {
 			//alert("The food I'm after is at spot:" + this.food.x + "and" + this.food.y);
 		}
 	};
-	
+
 	// to do: check if food eaten
-	
+
 	this.draw = function() {
 		context.drawImage(bugimg, this.x, this.y);
 	};
@@ -113,25 +129,25 @@ function Bug(x, speed, score, bugimg, width, height) {
 		this.distance = Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));
 		this.angle = Math.atan2(this.dy,this.dx) * 180 / Math.PI;
 	};
-	
+
 	this.UpdateSpeed = function() {
 		// find where the bug needs to go next
 		this.moveX = this.speed * (this.dx/this.distance);
 		this.moveY = this.speed * (this.dy/this.distance);
     };
-	
+
 	this.move = function() {
-		
+
 		// move the bug towards food
 		this.UpdateAngle();
 		this.UpdateSpeed();
-		
+
 		// todo: check collision before moving
 		this.x += this.moveX;
 		this.y += this.moveY;
-		
+
 	};
-	
+
 	this.init();
 }
 
@@ -186,6 +202,7 @@ function startGame() {
 	orangebug = new Image();
 	redbug = new Image();
 	food = new Image();
+    splat = new Image();
 	
 	var numImages = 4;
 	var numLoaded = 0;
@@ -197,7 +214,15 @@ function startGame() {
 			start();
 		}
 	}
-	
+
+    splat.onload = function() {
+        imageLoaded();
+    };
+
+    cloth.onload = function(){
+        imageLoaded();
+    };
+
 	blackbug.onload = function() {
 		imageLoaded();
 	};
@@ -219,6 +244,8 @@ function startGame() {
 	orangebug.src = 'orangebug.png';
 	redbug.src = 'redbug.png';
 	food.src = 'food.png';
+    splat.src = 'splat.png';
+    cloth.src = 'picniccloth.png';
 	
 }
 
@@ -397,6 +424,7 @@ function getPosition(event) {
             bugY = bugs[i].y;
             if (bugX+40>=x && x>=bugX-30 && bugY+30>=y && y>=bugY-30) { // if bug was clicked on
                 addScore(bugs[i].score);
+                splats.push();
                 bugs.splice(i, 1);
             }
         }
