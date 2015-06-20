@@ -112,7 +112,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 		this.dy = this.food.y - this.y;
 		this.distance = Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));
 		this.angle = Math.atan2(this.dy,this.dx) * 180 / Math.PI;
-	}
+	};
 	
 	this.UpdateSpeed = function() {
 		// find where the bug needs to go next
@@ -395,8 +395,6 @@ function getPosition(event) {
         for (var i=0; i<bugs.length; i++) {
             bugX = bugs[i].x;
             bugY = bugs[i].y;
-            //alert("x: " + x + " y: " + y + "\n bugX: " + bugX + " bugY: " + bugY +
-            //    "\n"+ (bugX+10>=x) + " | " + (x>=bugX)+" | "+(bugY+40>=y)+ " | "+ (y>=bugY-1));
             if (bugX+40>=x && x>=bugX-30 && bugY+30>=y && y>=bugY-30) { // if bug was clicked on
                 addScore(bugs[i].score);
                 bugs.splice(i, 1);
