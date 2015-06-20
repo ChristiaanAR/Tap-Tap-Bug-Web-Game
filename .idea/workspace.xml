@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe3286d5-0553-4dfe-b661-019a4152e2d6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A2.js" afterPath="$PROJECT_DIR$/A2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="CSC309A2.iws" />
@@ -198,7 +197,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434762140018</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="minor changes.">
+      <created>1434762746096</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1434762746096</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -240,7 +245,8 @@
     <MESSAGE value="Added function to end game." />
     <MESSAGE value="." />
     <MESSAGE value="Updated for proper hit detection, fixed some pause and new game bugs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated for proper hit detection, fixed some pause and new game bugs." />
+    <MESSAGE value="minor changes." />
+    <option name="LAST_COMMIT_MESSAGE" value="minor changes." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
