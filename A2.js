@@ -65,7 +65,6 @@ var nextbug;
 
 // food object to store location and state (eaten or not)
 function Food(x, y, id) {
-	this.eaten = false;
 	this.x = x;
 	this.y = y;
 	this.id = id;
@@ -92,18 +91,18 @@ function Bug(x, speed, score, bugimg, width, height) {
 		if (foods.length > 0) {
 			// sets the default lowest distance to first food
 			var lowestdist = Math.sqrt(Math.pow((this.x - foods[0].x), 2) + Math.pow((this.y - foods[0].y), 2));
+			this.food = foods[0];
 			var dist;
 			
 			// find the nearest food using euclidean distance
 			for (var i = 0; i < foods.length; i++) {
 				dist = Math.sqrt(Math.pow((this.x - foods[i].x), 2) + Math.pow((this.y - foods[i].y), 2));
-				console.log("Is this dist smaller?: " + dist + " than " + lowestdist);
+	
 				if (dist < lowestdist) {
 					lowestdist = dist;
 					this.food = foods[i]; //keep track of food
 				}
 			}
-			console.log("Going towards: " + lowestdist);
 		} else {
 			this.food = null;
 		}
@@ -116,7 +115,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 		if (this.food === null) {
 			// if this bug ate the food, find the newest food it needs to eat
 			this.findfood();
-		} else if (foods[this.food.id] != this.food.id) {
+		} else if (foods[this.food.id].id != this.food.id) {
 			// if the food was eaten by another bug, find another food
 			this.findfood();
 		}
@@ -133,7 +132,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 		this.dx = this.food.x - this.x;
 		this.dy = this.food.y - this.y;
 		this.distance = Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));
-	}
+	};
 
 	this.UpdateAngle = function() {
 		// find the angle of the bug
@@ -167,18 +166,16 @@ function Bug(x, speed, score, bugimg, width, height) {
 	this.atefood = function() {
 		// collision checking for the bug and food
 		if (this.distance < 1.5) {
-			console.log(this.distance);
 			for (var i = 0; i < foods.length; i++) {
 				// find food to delete
 				if (foods[i].id === this.food.id) {
-					console.log("Deleting " + i);
 					foods.splice(i, 1);
-					console.log("Food left: " + foods.length);
+					break;
 				}
 			}
 			this.food = null;
 		}
-	}
+	};
 	
 	this.findfood();
 }
@@ -339,7 +336,7 @@ function animate() {
                 bugs.push(new Bug(rand(10, 390), orangebugsp, orangebugscr, orangebug, bugwidth, bugheight));
             }
             // reset counter with a random value: one or several seconds (60 frames per sec)
-            nextbug = rand(1, 3) * 6000000;
+            nextbug = rand(1, 3) * FPS;
         }
 		
 		// draw all food and render to canvas
