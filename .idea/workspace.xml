@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe3286d5-0553-4dfe-b661-019a4152e2d6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blackbug.png" afterPath="$PROJECT_DIR$/blackbug.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orangebug.png" afterPath="$PROJECT_DIR$/orangebug.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/redbug.png" afterPath="$PROJECT_DIR$/redbug.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/A2.js" afterPath="$PROJECT_DIR$/A2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -40,8 +37,8 @@
       <file leaf-file-name="A2.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/A2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.0330935">
-              <caret line="408" column="8" selection-start-line="408" selection-start-column="8" selection-end-line="408" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.03884892">
+              <caret line="89" column="6" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -229,7 +226,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434814215813</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed bug with endgame screen, splats show up but don't disappear.">
+      <created>1434829276523</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1434829276523</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -274,7 +277,8 @@
     <MESSAGE value="minor changes." />
     <MESSAGE value="Fixed pausing not resuming bug movement.  Fixed bug with end game text not changing back after high score." />
     <MESSAGE value="deletes bugs with splat code in, splats still don't show up." />
-    <option name="LAST_COMMIT_MESSAGE" value="deletes bugs with splat code in, splats still don't show up." />
+    <MESSAGE value="Fixed bug with endgame screen, splats show up but don't disappear." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug with endgame screen, splats show up but don't disappear." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -323,8 +327,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/A2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0330935">
-          <caret line="408" column="8" selection-start-line="408" selection-start-column="8" selection-end-line="408" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.03884892">
+          <caret line="89" column="6" selection-start-line="89" selection-start-column="6" selection-end-line="89" selection-end-column="6" />
           <folding />
         </state>
       </provider>

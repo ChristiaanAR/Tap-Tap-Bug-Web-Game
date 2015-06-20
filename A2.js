@@ -65,6 +65,7 @@ var cloth;
 
 // timer
 var nextbug;
+var animateClock;
 
 // food object to store location and state (eaten or not)
 function Food(x, y, id) {
@@ -81,27 +82,11 @@ function Food(x, y, id) {
 function Splat(x, y) {
     this.x = x;
     this.y = y;
-    this.old = 0;
-    this.tOut = null;
+    this.age = 0;
+
 
     this.draw = function() {
         context.drawImage(splat, this.x, this.y);
-    };
-
-    this.remove = function () {
-        if(this.old ==0) {
-            this.old = 1;
-        }
-        else {
-            for (var s = 0; s < splats.length; s++) {
-                if (splats[s].x == this.x && splats[s].y == this.y) {
-                    clearInterval(splats[s].tOut);
-                    splats.splice(s, 1);
-                    s = splats.length + 10;
-                    alert("remove splat");
-                }
-            }
-        }
     };
 }
 
@@ -371,7 +356,7 @@ function animate() {
 	}
 
 		// Animate game objects
-		requestAnimFrame(animate);
+    animateClock = requestAnimFrame(animate);
 
 	if (paused === false) {
 		// clear canvas
@@ -403,8 +388,14 @@ function animate() {
 		// draw bg to canvas
 		context.drawImage(cloth, 0, 0);
 
-        for (i = 0; i < splats.length; i++) {
-            splats[i].draw();
+        for (i = splats.length - 1; i >= 0; i--) {
+            splats[i].age++;
+            if(splats[i].age >= 120){
+                splats.splice(i, 1);
+            }
+            else {
+                splats[i].draw();
+            }
         }
 
 		// draw all food and render to canvas
@@ -422,6 +413,7 @@ function animate() {
 }
 function gameEnd() {
     pause();
+    animateClock = null;
     document.getElementById("end").style.display = 'block';
     if (lvl == 1 && score > lvl1HS) {
         setHighScore(score, 1);
@@ -495,7 +487,7 @@ window.requestAnimFrame = (function(){
           window.webkitRequestAnimationFrame || 
           window.mozRequestAnimationFrame    || 
           window.oRequestAnimationFrame      || 
-          window.msRequestAnimationFrame     || 
+          window.msRequestAnimationFrame     ||
           function( callback ){
             window.setTimeout(callback, 1000 / 60);
           };
@@ -519,7 +511,6 @@ function getPosition(event) {
             if (bugX+40>=x && x>=bugX-30 && bugY+30>=y && y>=bugY-30) { // if bug was clicked on
                 addScore(bugs[i].score);
                 splats.push(new Splat(bugX, bugY));
-                splats[splats.length-1].tOut = setInterval(splats[splats.length-1].remove, 2000);
                 bugs.splice(i, 1);
             }
         }
