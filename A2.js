@@ -111,11 +111,19 @@ function Bug(x, speed, score, bugimg, width, height) {
 	this.checkeaten = function() {
 		// check if food eaten
 		// if the food doesn't exist anymore, find a new one
+		var found = false;
 		
 		if (this.food === null) {
 			// if this bug ate the food, find the newest food it needs to eat
 			this.findfood();
-		} else if (foods[this.food.id].id != this.food.id) {
+		} 
+		// check if food exists still
+		for (var i = 0; i < foods.length; i++) {
+			if (foods[i].id === this.food.id) {
+				found = true;
+			}
+		}
+		if (found === false) {
 			// if the food was eaten by another bug, find another food
 			this.findfood();
 		}
