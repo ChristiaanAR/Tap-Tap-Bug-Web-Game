@@ -353,11 +353,10 @@ function animate() {
 		gameEnd();
 	}
 
-    if (paused === false) {
-	
 		// Animate game objects
 		requestAnimFrame(animate);
-		
+
+	if (paused === false) {
 		// clear canvas
 		context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -409,6 +408,10 @@ function gameEnd() {
         setHighScore(score, 2);
         document.getElementById("endMsg").textContent = 'New High Score!';
     }
+	else
+	{
+		document.getElementById("endMsg").textContent = 'Game Over';
+	}
 
     document.getElementById("pause").disabled = true;
     document.getElementById("finalScore").textContent = score;
