@@ -102,6 +102,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 	this.height = height;
 	this.food = null;
 	this.angle = 0;
+	this.orientation = 0;
 
 	this.findfood = function() {
 		// doesn't move if there is no food
@@ -151,9 +152,33 @@ function Bug(x, speed, score, bugimg, width, height) {
 	this.draw = function() {
 		// draw bug
 		
-		context.drawImage(bugimg, this.x, this.y);
+		this.rotate();
 		
 	};
+	
+	this.rotate = function() {
+		// origin
+        var xView = this.x + bugwidth / 2;
+        var yView = this.y + bugheight / 2;
+        
+        context.save();
+        
+        // make sure pivot is moved to origin
+        context.translate(xView, yView);
+        
+        // rotate around this point
+        context.rotate((90 + this.angle) * Math.PI / 180);
+        
+        // translate back before drawing the sprite
+        context.translate(-xView, -yView);
+		
+		// draw
+        context.drawImage(bugimg, this.x, this.y);
+		
+		// restore coordinate system
+        context.restore();
+		
+	}
 	
 	this.UpdateDistance = function() {
 		// updates distance from food
@@ -165,7 +190,7 @@ function Bug(x, speed, score, bugimg, width, height) {
 
 	this.UpdateAngle = function() {
 		// find the angle of the bug
-		this.angle = Math.atan2(this.dy,this.dx) * 180 / Math.PI;
+		this.angle = Math.atan2(this.dy, this.dx) * 180 / Math.PI;
 	};
 
 	this.UpdateSpeed = function() {
