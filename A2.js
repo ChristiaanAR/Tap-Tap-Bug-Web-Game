@@ -254,10 +254,6 @@ function startGame() {
 	*/
     
     LVL.set(document.getElementById("lvl1").checked ? 1 : 2);
-    
-    if (LVL.get() === 2){
-        console.log(true);
-    }
 
 	document.getElementById("end").style.display = 'none';
 	document.getElementById("main").style.display = 'none';
