@@ -1,9 +1,9 @@
-
 function setup() {
     setHighScore(lvl1HS, 1);
     document.getElementById("infoBar").style.display = 'none';
     document.getElementById("end").style.display = 'none';
 	document.getElementById("gamecanvas").style.display = 'none';
+    
 }
 
 // variables
@@ -11,7 +11,7 @@ var lvl1HS = 0;
 var lvl2HS = 0;
 
 // keep track of score, the time left and whether game paused, lvl
-var lvl, score, time, clock;
+var score, time, clock;
 var paused;
 
 //dimensions
@@ -234,6 +234,16 @@ function Bug(x, speed, score, bugimg, width, height) {
 	this.findfood();
 }
 
+var LVL = (function() {
+     var level = 0;
+
+     return {
+        reset: function() { level = 0 },
+        set: function(num) { level === 0 ? level = num : level = level;},
+        get: function() { return level; }
+    };
+})();
+
 function startGame() {
 
 	/*
@@ -242,10 +252,12 @@ function startGame() {
 	* Bring up game elements
 	* Start the game
 	*/
-	lvl = 2;
-	if (document.getElementById("lvl1").checked){
-		lvl = 1;
-	}
+    
+    LVL.set(document.getElementById("lvl1").checked ? 1 : 2);
+    
+    if (LVL.get() === 2){
+        console.log(true);
+    }
 
 	document.getElementById("end").style.display = 'none';
 	document.getElementById("main").style.display = 'none';
@@ -335,7 +347,7 @@ function startGame() {
 	food.src = 'food.png';
     splat.src = 'splat.png';
     cloth.src = 'picniccloth.png';
-	
+
 }
 
 // start animation loop
@@ -453,11 +465,11 @@ function gameEnd() {
     animateClock = 1;
 
     document.getElementById("end").style.display = 'block';
-    if (lvl == 1 && score > lvl1HS) {
+    if (LVL.get() == 1 && score > lvl1HS) {
         setHighScore(score, 1);
         document.getElementById("endMsg").textContent = 'New High Score!';
     }
-    else if (lvl == 2 && score > lvl2HS) {
+    else if (LVL.get() == 2 && score > lvl2HS) {
         setHighScore(score, 2);
         document.getElementById("endMsg").textContent = 'New High Score!';
     }
@@ -468,6 +480,8 @@ function gameEnd() {
 
     document.getElementById("pause").disabled = true;
     document.getElementById("finalScore").textContent = score;
+    
+    LVL.reset();
 }
 
 function setHighScore(HS, level) {
