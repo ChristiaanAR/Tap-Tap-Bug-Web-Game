@@ -342,7 +342,7 @@ function startGame() {
 	redbug.src = 'redbug.png';
 	food.src = 'food.png';
     splat.src = 'splat.png';
-    cloth.src = 'picniccloth.png';
+    cloth.src = 'PicnicCloth.png';
 
 }
 
